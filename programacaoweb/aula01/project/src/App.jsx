@@ -1,33 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css"
+import { useState } from "react"
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [clientCount, setClientCount] = useState(0)
+  const [emptyCount, setEmptyCount] = useState(10)
+
+  function increaseClient() {
+    if (emptyCount == 0) {
+      alert("Não há mesas disponíveis, por favor, aguarde.")
+    } else {
+      setClientCount(clientCount + 1)
+      setEmptyCount(emptyCount - 1)
+    }
+  }
+
+  function decreaseClient() {
+    if (clientCount == 0) {
+      alert("Não há clientes no restaurante.")
+    } else {
+      setEmptyCount(emptyCount + 1)
+      setClientCount(clientCount - 1)
+    }
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="main">
+        <h1>Título</h1>
+
+        <p>Mesas disponíveis no restaurante: {emptyCount}</p>
+        <p>Mesas ocupadas no restaurante: {clientCount}</p>
+
+        <button onClick={increaseClient}>Entrada de cliente</button>
+        <button onClick={decreaseClient}>Saída de cliente</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
