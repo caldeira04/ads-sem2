@@ -1,11 +1,20 @@
-.cor-titulo {
-  color: #f00;
-}
-
 .img-sinaleiras {
   margin-left: 40px;
+  height: 350px;
 }
 
 .img-sinaleiras:hover {
   cursor: pointer;
+}
+
+.cor-vermelha {
+  color: red;
+}
+
+.cor-amarela {
+  color: yellow;
+}
+
+.cor-verde {
+  color: green;
 }
