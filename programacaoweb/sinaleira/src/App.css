@@ -1,0 +1,11 @@
+.cor-titulo {
+  color: #f00;
+}
+
+.img-sinaleiras {
+  margin-left: 40px;
+}
+
+.img-sinaleiras:hover {
+  cursor: pointer;
+}
