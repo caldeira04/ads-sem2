@@ -107,14 +107,18 @@ h2 {
 
 footer {
 	background-color: #505050;
-	padding: 10rem 5rem 3rem;
+	padding: 7rem 5rem 3rem;
 }
 
 .footer-div {
 	display: flex;
-	flex-flow: row;
 	justify-content: space-between;
 	align-items: center;
+	gap: 30px
+}
+
+.footer-menu {
+	display: flex;
 	gap: 30px
 }
 
@@ -128,6 +132,28 @@ footer {
 .footer-section a {
 	text-decoration: none;
 	color: white;
+}
+
+.footer-social h1 {
+	font-weight: bold;
+	font-size: 40px;
+	color: white;
+}
+
+.footer-social {
+	text-align: right;
+	line-height: 50px;
+}
+
+.footer-copyright {
+	color: #FFF;
+	background-color: #252525;
+	width: 1440px;
+	padding: 10px 0;
+}
+
+.footer-copyright p {
+	margin: 0 5rem;
 }
 
 strong {
