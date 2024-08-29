@@ -48,13 +48,13 @@ while (true) {
 
 function acelerar(veiculo: Veiculo): void {
     if (veiculo.marchaAtual != 0) {
-        if (veiculo.velocidade <= (veiculo.velocidadeMaximaMarcha * veiculo.marchaAtual)) {
+        if (veiculo.velocidade <= veiculo.velocidadeCompativel) {
             veiculo.velocidade += veiculo.potencia * 0.1;
             console.log(veiculo.velocidade);
 
         } else {
             console.log("Cortando de giro! Suba a marcha!")
-            veiculo.velocidade = (veiculo.velocidadeMaximaMarcha * veiculo.marchaAtual);
+            veiculo.velocidade = veiculo.velocidadeCompativel;
         }
     }
 }
@@ -70,15 +70,9 @@ function frear(veiculo: Veiculo): void {
 }
 
 function subirMarcha(veiculo: Veiculo): void {
-    if (veiculo.marchaAtual <= veiculo.numeroMarchas) {
-        if (((veiculo.velocidade - 10) >= (veiculo.velocidadeMaximaMarcha * veiculo.marchaAtual)) && veiculo.marchaAtual != 1) {
-            console.log("Carro apagando, reduza a marcha!")
-
-        } else {
-            veiculo.marchaAtual += 1;
-            console.log(`Marcha atual: ${veiculo.marchaAtual}`)
-
-        }
+    if (veiculo.marchaAtual < veiculo.numeroMarchas) {
+        veiculo.marchaAtual += 1;
+        console.log(`Marcha atual: ${veiculo.marchaAtual}`)
     }
 }
 
@@ -99,7 +93,9 @@ function criaVeiculo(): Veiculo {
     veiculo.modelo = teclado('Modelo: ');
     veiculo.potencia = +teclado('Potência: ');
     veiculo.numeroMarchas = +teclado('Número de marchas: ');
+    veiculo.marchaAtual = +0;
     veiculo.velocidadeMaxima = + veiculo.velocidadeMaxima + (veiculo.potencia / 2);
-    veiculo.velocidadeMaximaMarcha = + (veiculo.velocidadeMaxima / veiculo.numeroMarchas);
+    veiculo.velocidadeMaximaMarcha = + veiculo.velocidadeMaxima / veiculo.numeroMarchas;
+    veiculo.velocidadeCompativel =+ veiculo.velocidadeMaximaMarcha * veiculo.marchaAtual;
     return veiculo;
 }

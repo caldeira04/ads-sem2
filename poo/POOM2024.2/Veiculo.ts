@@ -7,4 +7,5 @@ export class Veiculo {
     velocidade: number = 0;
     velocidadeMaxima: number = 120;
     velocidadeMaximaMarcha: number = 0;
+    velocidadeCompativel: number = 0;
 }
