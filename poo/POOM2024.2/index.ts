@@ -24,12 +24,27 @@ while(true){
             acelerar(carro);
             break;
     
+        case 2:
+            frear(carro);
+            break;
+        
+        case 3:
+            subirMarcha(carro);
+            break;
+
+        case 4:
+            descerMarcha(carro);
+            break;
+
+        case 5: 
+            imprimir(carro);
+            break;
+
         default:
             break;
     }
 }
 
-console.table(carro);
 
 function acelerar(veiculo: Veiculo): void{
     if(veiculo.marchaAtual != 0){
@@ -37,13 +52,40 @@ function acelerar(veiculo: Veiculo): void{
     console.log(veiculo.velocidade);
 }}
 
+function frear(veiculo: Veiculo): void {
+    if(veiculo.velocidade > 0){
+        veiculo.velocidade -= 10;
+        if(veiculo.velocidade < 0){
+            veiculo.velocidade = 0;
+        }
+        console.log(veiculo.velocidade);
+    }
+}
+
+function subirMarcha(veiculo: Veiculo): void {
+    if(veiculo.marchaAtual <= veiculo.numeroMarchas) {
+        veiculo.marchaAtual += 1;
+        console.log(`Marcha atual: ${veiculo.marchaAtual}`)
+    }
+}
+
+function descerMarcha(veiculo: Veiculo): void {
+    if(veiculo.marchaAtual > 0) {
+        veiculo.marchaAtual -=1;
+        console.log(`Marcha atual: ${veiculo.marchaAtual}`)
+    }
+}
+
+function imprimir(veiculo: Veiculo): void {
+    console.table(veiculo);
+}
+
 function criaVeiculo(): Veiculo{
     const veiculo: Veiculo = new Veiculo();
     veiculo.marca = teclado('Marca: ');
     veiculo.modelo = teclado('Modelo: ');
     veiculo.potencia = +teclado('Potência: ');
     veiculo.numeroMarchas = +teclado('Número de marchas: ');
+    veiculo.velocidadeMaxima = + veiculo.velocidadeMaxima + (veiculo.potencia/2)
     return veiculo;
 }
-
-
