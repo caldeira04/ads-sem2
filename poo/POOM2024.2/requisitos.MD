@@ -1,13 +1,8 @@
-[x]  Criar um objeto a partir da classe Veículo
+[x] Criar um objeto a partir da classe Veículo
 [x] Criar veículo
 [x] Imprimir o veículo
-3. Acelerar
-RN: 
-Precisa verificar se a marcha é compatível com o aumento de velocidade.
-Aceleração deve ter ganho de velocidade proporcional com a potência.
-Levar em consideração a potência do veículo para definir um novo atributo de "velocidadeMaxima".
-A Velocidade máxima deverá levar em consideração a potência do veículo
-4. Frear 
+[x] Acelerar
+[x] Frear 
 5. Subir marcha
 RN: Deve verificar se a velocidade é compatível
 6. Reduzir marcha
