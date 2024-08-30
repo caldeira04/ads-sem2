@@ -1,0 +1,135 @@
+@import url(reset.css);
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+    height: 950px;
+    width: 1440px;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    background-color: #000;
+}
+
+.left, .right {
+    width: 50%;
+    height: 100%;
+    padding: 35px;
+    margin-top: 50px;
+}
+
+.left {
+    background-color: #353945;
+    color: #FFF;
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+}
+
+.container__text {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+.container__left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 600px;
+    align-items: center;
+    
+}
+.container__left p {
+    width: 420px;
+    font-size: 18px;
+    line-height: 30px;
+}
+.container__left h2 {
+    text-align: center;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.right {
+    background-color: #FFF;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.right__heading {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.right__heading h2 {
+    text-align: start;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 38px;
+}
+
+.right__heading p {
+    text-align: start;
+    font-size: 16px;
+}
+
+.container__right {
+    width: 425px;
+    height: 524px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+form input {
+    width: 100%;
+    height: 46px;
+    background-color: #EDF2F7;
+    border: none;
+}
+
+form label {
+    text-align: start;
+}
+
+.input__div {
+    padding-bottom: 10px;
+    text-align: start;
+}
+
+.password__prompt {
+    text-align: end;
+    font-size: 12px;
+}
+
+.container__right button {
+    background-color: #000;
+    color: #FFF;
+    height: 48px;
+    border-radius: 90px;
+}
+
+.container__right button:hover {
+    cursor: pointer;
+}
+
+.socials {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.socials__bold {
+    font-weight: 700;
+}
