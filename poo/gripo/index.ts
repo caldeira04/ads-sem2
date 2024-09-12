@@ -1,136 +1,239 @@
-import { Cliente } from './Clientes'
-import { Reserva } from './Reservas'
-import { Quadra } from './Quadras'
-import prompt from "prompt-sync"
-import * as fs from 'fs'
+import { Cliente } from './Clientes';
+import { Reserva } from './Reservas';
+import { Quadra } from './Quadras';
+import prompt from 'prompt-sync';
+import * as fs from 'fs';
 
-function lerArquivo() {
-    try {
-        const data = fs.readFileSync('data.json', 'utf-8');
-        return JSON.parse(data);
-    } catch (err) {
-        console.error('Erro ao ler o arquivo:', err);
-        return { clientes: [], quadras: [], reservas: [] }; // Retorna um objeto vazio padrão se o arquivo não existir ou falhar.
-    }
+interface Dados {
+	clientes: Cliente[];
+	quadras: Quadra[];
+	reservas: Reserva[];
 }
 
-function salvarArquivo(dados: any) {
-    fs.writeFile('data.json', JSON.stringify(dados, null, 2), 'utf-8', (err) => {
-        if (err) {
-            console.error('Erro ao salvar o arquivo:', err);
-            return;
-        }
-        console.log('Dados salvos com sucesso!');
-    });
+function lerArquivo(): Dados {
+	try {
+		const data = fs.readFileSync('data.json', 'utf-8');
+		return JSON.parse(data);
+	} catch (err) {
+		console.error('Erro ao ler o arquivo:', err);
+		return { clientes: [], quadras: [], reservas: [] }; // Retorna um objeto vazio padrão se o arquivo não existir ou falhar.
+	}
 }
 
-const teclado = prompt()
+const dados = lerArquivo();
 
-console.log("Bem vindo ao Gripo")
+const teclado = prompt();
+console.log("Bem-vindo ao Gripo");
 
 while (true) {
-	console.log("Escolha uma opção: ")
-	console.log("1. Adicionar quadra")
-	console.log("2. Remover quadra")
-	console.log("3. Adicionar cliente")
-	console.log("4. Realizar reserva")
-	console.log("5. Cancelar reserva")
-	const opcao = +teclado("Escolha uma opção: ")
+	console.log("\nEscolha uma opção: ");
+	console.log("1. Adicionar quadra");
+	console.log("2. Remover quadra");
+	console.log("3. Mostrar quadra");
+	console.log("4. Adicionar cliente");
+	console.log("5. Remover cliente");
+	console.log("6. Mostrar clientes");
+	console.log("7. Realizar reserva");
+	console.log("8. Cancelar reserva");
+	console.log("9. Mostrar reservas");
+
+	const opcao = +teclado("Escolha uma opção: ");
 	if (opcao === 0) {
 		break;
 	}
 	switch (opcao) {
 		case 1:
+			adicionarQuadra();
 			break;
-		
 		case 2:
-			console.log("\nEscolha uma quadra para remover:")
-			listaQuadra();
+			removerQuadra();
 			break;
-
 		case 3:
-			criarCliente()
+			mostrarQuadra();
 			break;
-			
 		case 4:
-			adicionarReserva()
+			criarCliente();
 			break;
-
 		case 5:
-			removeReserva()
+			removerCliente();
 			break;
-			
+		case 6:
+			mostrarClientes();
+			break;
+		case 7:
+			adicionarReserva();
+			break;
+		case 8:
+			removerReserva();
+			break;
+		case 9:
+			mostrarReservas();
+			break;
 		default:
+			console.log("Opção inválida!");
 			break;
 	}
-
-}
-
-function listaQuadra() {
-	console.log("Quadras disponíveis: \n")
-	const dados = lerArquivo()
-	dados.quadras.forEach((quadra: any, index: number) => {
-		console.log(`${index + 1}. ${quadra.esporte}, Número: ${quadra.numero}`)
-	})
-
 }
 
 function novoCliente(): Cliente {
-	const cliente: Cliente = new Cliente();
-	cliente.id = +teclado('Insfunction salvarArquivo(dados: any) {
-    fs.writeFile('data.json', JSON.stringify(dados, null, 2), 'utf-8', (err) => {
-        if (err) {
-            console.error('Erro ao salvar o arquivo:', err);
-            return;
-        }
-        console.log('Dados salvos com sucesso!');
-    });
-}ira o CPF: ');
+	const cliente = new Cliente();
+	cliente.id = +teclado('Insira o CPF do cliente: ');
 	cliente.nome = teclado('Insira o nome do cliente: ');
-	cliente.telefone = +teclado('Insira o telefone do cliente: ')
+	cliente.telefone = +teclado('Insira o telefone do cliente: ');
 	return cliente;
 }
 
 function novaQuadra(): Quadra {
-	const quadra: Quadra = new Quadra();
-	quadra.esporte = teclado('Esporte realizado na quadra: ')
-	quadra.numero = +teclado('Numeração da quadra: ')
-	quadra.horario = +teclado('Insira os horários disponíveis para essa quadra: ')
-	return quadra
+	const quadra = new Quadra();
+	quadra.esporte = teclado('Esporte realizado na quadra: ');
+	quadra.numero = +teclado('Numeração da quadra: ');
+	return quadra;
 }
 
 function novaReserva(): Reserva {
-	const reserva: Reserva = new Reserva();
-	reserva.cliente = teclado('Nome do cliente da reserva: ')
-	reserva.data = +teclado('Dia da reserva: ')
-	reserva.horario = +teclado('Horário da reserva: ')
-	reserva.quadra = teclado('Quadra escolhida: ')
-	return reserva
-}
-function criarCliente() {
-    const cliente = novoCliente();
-    const dados = lerArquivo(); // Lê os dados do arquivo antes de adicionar o novo cliente
-    dados.clientes.push(cliente); // Adiciona o novo cliente à lista
-    salvarArquivo(dados); // Salva os dados atualizados de volta no arquivo
-}
-
-function mostrarClientes() {
-    const dados = lerArquivo(); // Lê os dados do arquivo
-    if (dados.clientes.length === 0) {
-        console.log('Nenhum cliente cadastrado.');
-    } else {
-        console.log('Lista de clientes:');
-        dados.clientes.forEach((cliente: any, index: number) => {
-            console.log(`${index + 1}. Nome: ${cliente.nome}, CPF: ${cliente.id}, Telefone: ${cliente.telefone}`);
-        });
-    }
+	const reserva = new Reserva();
+	mostrarClientes();
+	if (dados.clientes.length === 0) {
+		console.log('Nâo foi possível realizar a reserva.');
+		return reserva;
+	}
+	reserva.cliente = dados.clientes[+teclado('Escolha o número de ID do cliente: ') - 1].nome;
+	reserva.data = +teclado('Dia da reserva: ');
+	reserva.horario = +teclado('Horário da reserva: ');
+	reserva.quadra = teclado('Quadra escolhida: ');
+	return reserva;
 }
 
-function adicionarReserva() {
-	const reserva = novaReserva()
+function adicionarQuadra(): void {
+	const quadra = novaQuadra();
+	const dados = lerArquivo();
+	dados.quadras.push(quadra);
+	salvarArquivo(dados);
 }
 
-function removeReserva() {
-
+function removerQuadra(): void {
+	if (dados.quadras.length === 0) {
+		console.log('Nenhuma quadra para remover.');
+		return;
+	}
+	console.log("\nQuadras existentes: \n");
+	dados.quadras.forEach((quadra: Quadra, index: number) => {
+		console.log(`${index + 1}. Esporte: ${quadra.esporte}, Número: ${quadra.numero}`);
+	});
+	const quadraIndex = +teclado('Escolha o número da quadra para remover: ') - 1;
+	if (quadraIndex >= 0 && quadraIndex < dados.quadras.length) {
+		dados.quadras.splice(quadraIndex, 1);
+		salvarArquivo(dados);
+		console.log('Quadra removida com sucesso!');
+	} else {
+		console.log('Número de quadra inválido.');
+	}
 }
 
+function mostrarQuadra() {
+	if (dados.quadras.length === 0) {
+		console.log('Nenhuma quadra cadastrada.');
+	} else {
+		console.log('\nLista de quadras:');
+		dados.quadras.forEach((quadra: Quadra, index: number) => {
+			console.log(`${index + 1}. Esporte: ${quadra.esporte}, Número: ${quadra.numero}`);
+		});
+	}
+}
+
+function criarCliente(): void {
+	const cliente = novoCliente();
+	const dados = lerArquivo();
+	dados.clientes.push(cliente);
+	salvarArquivo(dados);
+}
+
+function removerCliente(): void {
+	if (dados.clientes.length === 0) {
+		console.log('Nenhum cliente para remover.');
+		return;
+	}
+	console.log("\nClientes existentes: \n");
+	dados.clientes.forEach((cliente: Cliente, index: number) => {
+		console.log(`${index + 1}. Nome: ${cliente.nome}, CPF: ${cliente.id}, Telefone: ${cliente.telefone}`);
+	});
+	const clienteIndex = +teclado('Escolha o número do cliente para remover: ') - 1;
+	if (clienteIndex >= 0 && clienteIndex < dados.clientes.length) {
+		dados.clientes.splice(clienteIndex, 1);
+		salvarArquivo(dados);
+		console.log('Cliente removido com sucesso!');
+	} else {
+		console.log('Número de cliente inválido.');
+	}
+}
+
+function mostrarClientes(): void {
+	if (dados.clientes.length === 0) {
+		console.log('Nenhum cliente cadastrado.');
+	} else {
+		console.log('\nLista de clientes:');
+		dados.clientes.forEach((cliente: Cliente, index: number) => {
+			console.log(`${index + 1}. Nome: ${cliente.nome}, CPF: ${cliente.id}, Telefone: ${cliente.telefone}`);
+		});
+	}
+}
+
+function adicionarReserva(): void {
+	const reserva = novaReserva();
+	// Verificação de conflito de horário
+	const conflito = dados.reservas.some((reservaExistente: Reserva) =>
+		reservaExistente.quadra === reserva.quadra && reservaExistente.horario === reserva.horario
+	);
+
+	if (conflito) {
+		console.log('Não é possível realizar a reserva. Já existe uma reserva para essa quadra e horário.');
+		return;
+	}
+
+	dados.reservas.push(reserva);
+	salvarArquivo(dados);
+	console.log('Reserva realizada com sucesso!');
+}
+
+
+function removerReserva(): void {
+	if (dados.reservas.length === 0) {
+		console.log('Nenhuma reserva para cancelar.');
+		return;
+	}
+	console.log("\nReservas existentes: \n");
+	dados.reservas.forEach((reserva: Reserva, index: number) => {
+		console.log(`${index + 1}. Cliente: ${reserva.cliente}, Data: ${reserva.data}, Horário: ${reserva.horario}, Quadra: ${reserva.quadra}`);
+	});
+	const reservaIndex = +teclado('Escolha o número da reserva para cancelar: ') - 1;
+	if (reservaIndex >= 0 && reservaIndex < dados.reservas.length) {
+		dados.reservas.splice(reservaIndex, 1);
+		salvarArquivo(dados);
+		console.log('Reserva cancelada com sucesso!');
+	} else {
+		console.log('Número de reserva inválido.');
+	}
+}
+
+
+
+function mostrarReservas(): void {
+	if (dados.reservas.length === 0) {
+		console.log('Nenhuma reserva cadastrada.');
+	} else {
+		console.log('\nLista de reservas:');
+		dados.reservas.forEach((reserva: Reserva, index: number) => {
+			console.log(`${index + 1}. Cliente: ${reserva.cliente}, Data: ${reserva.data}, Horário: ${reserva.horario}, Quadra: ${reserva.quadra}`);
+		});
+	}
+}
+
+function salvarArquivo(dados: Dados): void {
+	fs.writeFile('data.json', JSON.stringify(dados, null, 2), 'utf-8', (err) => {
+		if (err) {
+			console.error('Erro ao salvar o arquivo:', err);
+			return;
+		}
+		console.log('Dados salvos com sucesso!');
+	});
+}
