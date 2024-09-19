@@ -36,6 +36,7 @@ while (true) {
   console.log("7. Realizar reserva");
   console.log("8. Cancelar reserva");
   console.log("9. Mostrar reservas");
+  console.log("0. Sair");
 
   const opcao = +teclado("Escolha uma opção: ");
   if (opcao === 0) {
@@ -72,7 +73,7 @@ while (true) {
       break;
     default:
       console.log("Opção inválida!");
-      break;
+      break;1
   }
 }
 
@@ -168,7 +169,7 @@ function removerCliente(): void {
 }
 
 function mostrarClientes(): void {
-  if (dados.clientes.length === 0) {
+  if (dados.clientes.length === 0) {1
     console.log('Nenhum cliente cadastrado.');
   } else {
     console.log('\nLista de clientes:');
@@ -192,7 +193,7 @@ function adicionarReserva(): void {
   const conflito = dados.reservas.some((reservaExistente: Reserva) =>
     reservaExistente.quadra === reserva.quadra && reservaExistente.horario === reserva.horario
   );
-
+1
   if (conflito) {
     console.log('Não é possível realizar a reserva. Já existe uma reserva para essa quadra e horário.');
     return;
