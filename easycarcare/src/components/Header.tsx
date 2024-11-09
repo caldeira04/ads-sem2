@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Header() {
   return (
     <header className="bg-blue-950 flex flex-row text-white justify-between px-8 py-4">
@@ -11,8 +13,8 @@ export default function Header() {
       <nav className="flex flex-row items-center gap-10">
         <img src="hamburguer.png" alt="Menu hamburguer" className="lg:hidden" width="40px" height="40px" />
         <ul className="hidden lg:flex flex-row gap-10 text-xl">
-          <li className="font-bold">Agenda</li>
-          <li>Serviços</li>
+          <Link to="/"><li>Agenda</li></Link>
+          <Link to="/services"><li>Serviços</li></Link>
           <li>Clientes</li>
           <li>Estoque</li>
         </ul>
@@ -21,7 +23,7 @@ export default function Header() {
           <p>João Pedro</p>
           <img src="logout.png" alt="Ícone de saída" width="40px" height="40px" />
         </div>
-      </nav>
-    </header>
+      </nav >
+    </header >
   )
 }
