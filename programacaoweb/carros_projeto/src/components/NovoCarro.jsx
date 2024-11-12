@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 
-
-export default function NovoCarro(carros, setCarros) {
+export default function NovoCarro({ carros, setCarros }) {
   const { register, handleSubmit } = useForm()
 
   function addCarro(data) {
@@ -10,7 +9,9 @@ export default function NovoCarro(carros, setCarros) {
       marca: data.marca,
       ano: data.ano,
       cambio: data.cambio,
-      descricao: data.descricao
+      descricao: data.descricao,
+      foto: data.foto,
+      comentario: ""
     }
 
     const carros2 = [carroNovo, ...carros]
@@ -84,11 +85,11 @@ export default function NovoCarro(carros, setCarros) {
           />
         </p>
         <p>
-          <label htmlFor="imagem">Adicione uma imagem do carro:</label>
+          <label htmlFor="foto">Adicione uma imagem do carro:</label>
           <input
             type="url"
-            id="imagem"
-            {...register("imagem")}
+            id="foto"
+            {...register("foto")}
             required
           />
         </p>
