@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import 'react-responsive-modal/styles.css'
 import { Modal } from 'react-responsive-modal'
 import './App.css'
 import ItemCarro from './components/ItemCarro'
@@ -29,16 +30,14 @@ function App() {
   return (
     <>
       <Titulo />
-      <p className='font-sans'>Página principal</p>
-      <button onClick={adicionarCarro}>Adicionar</button>
-      <div>
+      <h2>Página principal</h2>
+      <button onClick={adicionarCarro} className='button'>Adicionar</button>
+      <div className='container__lista__carros'>
         {listaCarros}
       </div>
-      <div>
-        <Modal open={open} onClose={() => setOpen(false)} center>
-          <NovoCarro carros={carros} setCarros={setCarros} />
-        </Modal>
-      </div>
+      <Modal open={open} onClose={() => setOpen(false)} center>
+        <NovoCarro carros={carros} setCarros={setCarros} />
+      </Modal>
     </>
   )
 }

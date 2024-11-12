@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import './NovoCarro.css'
 
 export default function NovoCarro({ carros, setCarros }) {
   const { register, handleSubmit } = useForm()
@@ -23,7 +24,7 @@ export default function NovoCarro({ carros, setCarros }) {
     <>
       <h2>Adicione seu carro à lista</h2>
       <form onSubmit={handleSubmit(addCarro)}>
-        <p>
+        <p className="input__item">
           <label htmlFor="marca">Marca:</label>
           <input
             type="text"
@@ -33,7 +34,7 @@ export default function NovoCarro({ carros, setCarros }) {
           />
         </p>
 
-        <p>
+        <p className="input__item">
           <label htmlFor="modelo">modelo:</label>
           <input
             type="text"
@@ -42,7 +43,7 @@ export default function NovoCarro({ carros, setCarros }) {
             required
           />
         </p>
-        <p>
+        <p className="input__item">
           <label htmlFor="ano">Ano:</label>
           <input
             type="number"
@@ -51,7 +52,7 @@ export default function NovoCarro({ carros, setCarros }) {
             required
           />
         </p>
-        <p>
+        <p className="input__item">
           Tipo de Câmbio:
           <input
             type="radio"
@@ -76,7 +77,7 @@ export default function NovoCarro({ carros, setCarros }) {
           />
           <label htmlFor="CVT">CVT</label>
         </p>
-        <p>
+        <p className="input__item">
           <label htmlFor="descricao">Insira a descrição:</label>
           <input
             type="text"
@@ -84,7 +85,7 @@ export default function NovoCarro({ carros, setCarros }) {
             {...register("descricao")}
           />
         </p>
-        <p>
+        <p className="input__item">
           <label htmlFor="foto">Adicione uma imagem do carro:</label>
           <input
             type="url"
@@ -93,7 +94,7 @@ export default function NovoCarro({ carros, setCarros }) {
             required
           />
         </p>
-        <p>
+        <p className="input__item">
           <input type="submit" value="Adicionar carro" />
           <input type="reset" value="Limpar formulário" />
         </p>

@@ -1,4 +1,4 @@
-
+import './ItemCarro.css'
 export default function ItemCarro({ carro, carros, setCarros }) {
   function comentaCarro() {
     const comentario = prompt("Comente sobre o carro")
@@ -15,17 +15,19 @@ export default function ItemCarro({ carro, carros, setCarros }) {
   }
 
   return (
-    <div>
+    <div className='container'>
       <img widht="250px" height="250px" src={`${carro.foto}`} alt={`Foto do ${carro.marca} ${carro.modelo}, ano ${carro.ano}`} />
-      <h2>{carro.marca} {carro.modelo}</h2>
-      <h3>{carro.ano}</h3>
-      <h3>Câmbio {carro.cambio}</h3>
-      <p>{carro.descricao}</p>
-      {carro.comentario == "" ?
-        <button onClick={comentaCarro}>Comentar</button>
-        :
-        <p>{carro.comentario}</p>
-      }
+      <div className='info'>
+        <h2>{carro.marca} {carro.modelo}</h2>
+        <h3>{carro.ano}</h3>
+        <h3>Câmbio {carro.cambio}</h3>
+        <p>{carro.descricao}</p>
+        {carro.comentario == "" ?
+          <button onClick={comentaCarro}>Comentar</button>
+          :
+          <p>{carro.comentario}</p>
+        }
+      </div>
     </div>
   )
 }
