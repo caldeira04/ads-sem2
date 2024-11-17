@@ -15,7 +15,7 @@ export default function Header() {
         <ul className="hidden lg:flex flex-row gap-10 text-xl">
           <Link to="/"><li>Agenda</li></Link>
           <Link to="/services"><li>Serviços</li></Link>
-          <li>Clientes</li>
+          <Link to="/clientes"><li>Clientes</li></Link>
           <li>Estoque</li>
         </ul>
         <div className="hidden lg:flex flex-row items-center gap-3">

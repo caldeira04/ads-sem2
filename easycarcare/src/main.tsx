@@ -6,6 +6,7 @@ import {
 import './index.css'
 import App from './App.tsx'
 import Services from "./Services.tsx"
+import Clientes from "./Clientes.tsx"
 
 const router = createBrowserRouter([
   {
@@ -15,7 +16,11 @@ const router = createBrowserRouter([
   {
     path: "/services",
     element: <Services />
-  }
+  },
+  {
+    path: "/clientes",
+    element: <Clientes />
+  },
 ])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
